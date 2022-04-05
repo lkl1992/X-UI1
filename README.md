@@ -31,3 +31,7 @@ wget -N https://raw.githubusercontent.com/Misaka-blog/x-ui/master/install.sh && 
 ```
 x-ui v2-ui
 ```
+
+## 感谢列表
+
+X-ui 原作：https://github.com/vaxilu/x-ui
