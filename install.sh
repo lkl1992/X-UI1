@@ -39,6 +39,7 @@ elif [[ $arch == "s390x" ]]; then
     arch="s390x"
 else
     echo -e "${red}不支持的CPU架构！脚本将自动退出 ${arch}${plain}"
+    rm -f install.sh
     exit 1
 fi
 
@@ -46,6 +47,7 @@ echo "架构: ${arch}"
 
 if [ $(getconf WORD_BIT) != '32' ] && [ $(getconf LONG_BIT) != '64' ]; then
     echo "本软件不支持 32 位系统(x86)，请使用 64 位系统(x86_64)，如果检测有误，请联系作者"
+    rm -f install.sh
     exit -1
 fi
 
@@ -110,12 +112,14 @@ install_x-ui() {
         last_version=$(curl -Ls "https://api.github.com/repos/Misaka-blog/x-ui/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$last_version" ]]; then
             echo -e "${red}检测 x-ui 版本失败，可能是超出 Github API 限制，请稍后再试，或手动指定 x-ui 版本安装${plain}"
+            rm -f install.sh
             exit 1
         fi
         echo -e "检测到 x-ui 最新版本：${last_version}，开始安装"
         wget -N --no-check-certificate -O /usr/local/x-ui-linux-${arch}.tar.gz https://github.com/Misaka-blog/x-ui/releases/download/${last_version}/x-ui-linux-${arch}.tar.gz
         if [[ $? -ne 0 ]]; then
             echo -e "${red}下载 x-ui 失败，请确保你的服务器能够下载 Github 的文件${plain}"
+            rm -f install.sh
             exit 1
         fi
     else
@@ -125,6 +129,7 @@ install_x-ui() {
         wget -N --no-check-certificate -O /usr/local/x-ui-linux-${arch}.tar.gz ${url}
         if [[ $? -ne 0 ]]; then
             echo -e "${red}下载 x-ui v$1 失败，请确保此版本存在${plain}"
+            rm -f install.sh
             exit 1
         fi
     fi
@@ -168,6 +173,7 @@ install_x-ui() {
     echo -e "x-ui install      - 安装 x-ui 面板"
     echo -e "x-ui uninstall    - 卸载 x-ui 面板"
     echo -e "----------------------------------------------"
+    rm -f install.sh
 }
 
 echo -e "${green}开始安装${plain}"
