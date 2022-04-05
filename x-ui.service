@@ -1,5 +1,5 @@
 [Unit]
-Description=x-ui Service
+Description=X-ui Service, script by vaxilu and modified by Misaka-blog
 After=network.target
 Wants=network.target
 
