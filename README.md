@@ -15,7 +15,7 @@
 
 # 安装&升级
 
-```
+```shell
 wget -N https://raw.githubusercontent.com/Misaka-blog/x-ui/master/install.sh && bash install.sh
 ```
 
