@@ -13,7 +13,7 @@
 - 支持 https 访问面板（自备域名 + ssl 证书）
 - 更多高级配置项，详见面板
 
-# 安装&升级
+# 安装或升级
 
 ```shell
 wget -N https://raw.githubusercontent.com/Misaka-blog/x-ui/master/install.sh && bash install.sh
@@ -34,6 +34,6 @@ wget -N https://raw.githubusercontent.com/Misaka-blog/x-ui/master/install.sh && 
 x-ui v2-ui
 ```
 
-## 感谢列表
+# 感谢列表
 
 X-ui 原作：https://github.com/vaxilu/x-ui
