@@ -51,13 +51,13 @@ jobs:
           cd ..
           cd ..
       - name: package
-        run: tar -zcvf x-ui-linux-amd64.tgz x-ui
+        run: tar -zcvf x-ui-linux-amd64.tar.gz x-ui
       - name: upload
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GAYHUB_TOKEN }}
         with:
           upload_url: ${{ needs.release.outputs.upload_url }}
-          asset_path: x-ui-linux-amd64.tgz
-          asset_name: x-ui-linux-amd64.tgz
+          asset_path: x-ui-linux-amd64.tar.gz
+          asset_name: x-ui-linux-amd64.tar.gz
           asset_content_type: application/gzip
