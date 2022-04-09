@@ -45,26 +45,3 @@ jobs:
           asset_path: gocapture_linux.tgz
           asset_name: gocapture_linux.tgz
           asset_content_type: application/gzip
-
-  windowsbuild:
-    runs-on: windows-latest
-    needs: release
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.18
-      - name: build windows version
-        run: go build -v -o gocapture_windows.exe ./...
-      - name: package
-        run: tar -zcvf gocapture_windows.tgz gocapture_windows.exe static templates GeoLite2-City.mmdb
-      - name: upload
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GAYHUB_TOKEN }}
-        with:
-          upload_url: ${{ needs.release.outputs.upload_url }}
-          asset_path: gocapture_windows.tgz
-          asset_name: gocapture_windows.tgz
-          asset_content_type: application/gzip
