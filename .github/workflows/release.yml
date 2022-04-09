@@ -20,27 +20,44 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: ${{ github.ref }}
           draft: false
-          prerelease: false
+          prerelease: true
   linuxbuild:
     name: build gocapture
     needs: release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Install Unzip
+        run: |
+          apt-get update
+          apt install unzip -y
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
           go-version: 1.18
       - name: build linux version
-        run: go build -o gocapture_linux -v ./...
+        run: |
+          go build -o xui-release -v main.go
+          mkdir x-ui
+          cp xui-release x-ui/xui-release
+          cp x-ui.service x-ui/x-ui.service
+          cp x-ui.sh x-ui/x-ui.sh
+          cd x-ui
+          mv xui-release x-ui
+          mkdir bin
+          cd bin
+          wget https://github.com/XTLS/Xray-core/releases/download/v1.5.4/Xray-linux-64.zip
+          unzip Xray-linux-64.zip
+          cd ..
+          cd ..
       - name: package
-        run: tar -zcvf gocapture_linux.tgz gocapture_linux static templates GeoLite2-City.mmdb
+        run: tar -zcvf x-ui-linux-amd64.tgz x-ui
       - name: upload
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GAYHUB_TOKEN }}
         with:
           upload_url: ${{ needs.release.outputs.upload_url }}
-          asset_path: gocapture_linux.tgz
-          asset_name: gocapture_linux.tgz
+          asset_path: x-ui-linux-amd64.tgz
+          asset_name: x-ui-linux-amd64.tgz
           asset_content_type: application/gzip
