@@ -42,8 +42,7 @@ jobs:
           mv xui-release x-ui
           mkdir bin
           cd bin
-          latestXrayVer=$(curl -Ls "https://api.github.com/repos/XTLS/Xray-core/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-          wget https://github.com/XTLS/Xray-core/releases/download/$latestXrayVer/Xray-linux-64.zip
+          wget https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip
           unzip Xray-linux-64.zip
           rm -f Xray-linux-64.zip
           mv xray xray-linux-amd64
@@ -81,8 +80,7 @@ jobs:
           mv xui-release x-ui
           mkdir bin
           cd bin
-          latestXrayVer=$(curl -Ls "https://api.github.com/repos/XTLS/Xray-core/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-          wget https://github.com/XTLS/Xray-core/releases/download/$latestXrayVer/Xray-linux-arm64-v8a.zip
+          wget https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-arm64-v8a.zip
           unzip Xray-linux-arm64-v8a.zip
           rm -f Xray-linux-arm64-v8a.zip
           mv xray xray-linux-arm64
@@ -120,8 +118,7 @@ jobs:
           mv xui-release x-ui
           mkdir bin
           cd bin
-          latestXrayVer=$(curl -Ls "https://api.github.com/repos/XTLS/Xray-core/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-          wget https://github.com/XTLS/Xray-core/releases/download/$latestXrayVer/Xray-linux-s390x.zip
+          wget https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-s390x.zip
           unzip Xray-linux-s390x.zip
           rm -f Xray-linux-s390x.zip
           mv xray xray-linux-s390x
