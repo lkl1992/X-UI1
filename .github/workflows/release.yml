@@ -22,15 +22,15 @@ jobs:
           draft: false
           prerelease: true
   linuxbuild:
-    name: build gocapture
+    name: build x-ui
     needs: release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Install Unzip
         run: |
-          apt-get update
-          apt install unzip -y
+          sudo apt-get update
+          sudo apt install unzip -y
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
