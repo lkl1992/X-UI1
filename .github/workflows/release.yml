@@ -1,4 +1,4 @@
-name: Release gocapture
+name: Release X-ui
 on:
   push:
     tags:
@@ -17,7 +17,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GAYHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: gocapture ${{ github.ref }}
+          release_name: ${{ github.ref }}
           draft: false
           prerelease: false
   linuxbuild:
