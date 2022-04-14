@@ -2,6 +2,8 @@
 
 支持多协议多用户的 xray 面板
 
+# 关于抄袭本项目的嫌疑人: https://github.com/vaxilu/x-ui/pull/158
+
 # 功能介绍
 
 - 系统状态监控
