@@ -159,7 +159,7 @@ install_x-ui() {
     echo -e "x-ui install      - 安装 x-ui 面板"
     echo -e "x-ui uninstall    - 卸载 x-ui 面板"
     echo -e "----------------------------------------------"
-    if [[ echo $IP | grep ":" ]]; then
+    if [[ echo ${IP} | grep ':' ]]; then
         echo -e "${green}x-ui 面板登录地址：${plain} http://[${IP}]:${config_port}"
     else
         echo -e "${green}x-ui 面板登录地址：${plain} http://${IP}:${config_port}"
