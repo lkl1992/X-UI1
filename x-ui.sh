@@ -390,6 +390,70 @@ show_xray_status() {
     fi
 }
 
+set_telegram_bot() {
+    echo -E ""
+    yellow "设置Telegram Bot需要知晓Bot的Token与ChatId"
+    yellow "使用方法请参考博客https://coderfan.net"
+    read -P "我已确认以上内容[y/n]" confirmTGBot
+    if [ $confirmTGBot == "n" ]; then
+        show_menu
+    else
+        read -p "please input your tg bot token here:" TG_BOT_TOKEN
+        LOGI "你设置的电报机器人Token:$TG_BOT_TOKEN"
+        read -p "please input your tg chat id here:" TG_BOT_CHATID
+        LOGI "你设置的电报机器人ChatId:$TG_BOT_CHATID"
+        read -p "please input your tg bot runtime here:" TG_BOT_RUNTIME
+        LOGI "你设置的电报机器人运行周期:$TG_BOT_RUNTIME"
+        info=$(/usr/local/x-ui/x-ui setting -tgbottoken ${TG_BOT_TOKEN} -tgbotchatid ${TG_BOT_CHATID} -tgbotRuntime "$TG_BOT_RUNTIME")
+        if [ $? != 0 ]; then
+            yellow "$info"
+            red "设置TelegramBot失败"
+            exit 1
+        else
+            green "设置TelegramBot成功"
+            show_menu
+        fi
+    fi
+}
+
+enable_telegram_bot() {
+    echo -E ""
+    yellow "该功能会开启Telegram Bot通知"
+    yellow "通知内容包括:"
+    yellow "1.流量使用情况"
+    yellow "2.节点到期提醒,待实现(规划中)"
+    yellow "3.面板登录提醒,待完善(规划中)"
+    read -p "我已确认以上内容[y/n]" confirmTGBot
+    if [ $confirmTGBot == "y" ]; then
+        info=$(/usr/local/x-ui/x-ui setting -enabletgbot=true)
+        if [ $? == 0 ]; then
+            green "开启成功,重启X-UI生效,重启中...."
+            restart
+        else
+            red "开启失败,即将退出..."
+            exit 1
+        fi
+    else
+        show_menu
+    fi
+}
+
+disable_telegram_bot() {
+    read -P "确认是否关闭Tgbot[y/n]" confirmTGBot
+    if [ $confirmTGBot == "y" ]; then
+        info=$(/usr/local/x-ui/x-ui setting -enabletgbot=false)
+        if [ $? == 0 ]; then
+            green "关闭成功,重启X-UI生效,重启中...."
+            restart
+        else
+            red "关闭失败,请检查日志..."
+            exit 1
+        fi
+    else
+        show_menu
+    fi
+}
+
 ssl_cert_issue() {
     echo -E ""
     yellow "******使用说明******"
@@ -465,9 +529,12 @@ show_menu() {
  ${GREEN}14.${PLAIN} 一键安装 bbr (最新内核)
  ${GREEN}15.${PLAIN} 一键申请SSL证书(acme申请)
  ${GREEN}16.${PLAIN} VPS防火墙放开所有网络端口
+ ${green}17.${plain} 开启Telegram通知(TgBot)
+ ${green}18.${plain} 关闭Telegram通知(TgBot)
+ ${green}19.${plain} 设置TelegramBot
  "
     show_status
-    echo && read -p "请输入选择 [0-16]: " num
+    echo && read -p "请输入选择 [0-19]: " num
 
     case "${num}" in
         0) exit 0 ;;
@@ -487,6 +554,9 @@ show_menu() {
         14) install_bbr ;;
         15) ssl_cert_issue ;;
         16) open_ports ;;
+        17) enable_telegram_bot ;;
+        18) disable_telegram_bot ;;
+        19) set_telegram_bot ;;
         *) red "请输入正确的数字 [0-15]" ;;
     esac
 }
