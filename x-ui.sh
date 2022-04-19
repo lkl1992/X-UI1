@@ -399,11 +399,11 @@ set_telegram_bot() {
         show_menu
     else
         read -p "please input your tg bot token here:" TG_BOT_TOKEN
-        LOGI "你设置的电报机器人Token:$TG_BOT_TOKEN"
+        yellow "你设置的电报机器人Token:$TG_BOT_TOKEN"
         read -p "please input your tg chat id here:" TG_BOT_CHATID
-        LOGI "你设置的电报机器人ChatId:$TG_BOT_CHATID"
+        yellow "你设置的电报机器人ChatId:$TG_BOT_CHATID"
         read -p "please input your tg bot runtime here:" TG_BOT_RUNTIME
-        LOGI "你设置的电报机器人运行周期:$TG_BOT_RUNTIME"
+        yellow "你设置的电报机器人运行周期:$TG_BOT_RUNTIME"
         info=$(/usr/local/x-ui/x-ui setting -tgbottoken ${TG_BOT_TOKEN} -tgbotchatid ${TG_BOT_CHATID} -tgbotRuntime "$TG_BOT_RUNTIME")
         if [ $? != 0 ]; then
             yellow "$info"
