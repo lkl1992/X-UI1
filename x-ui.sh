@@ -398,19 +398,19 @@ set_telegram_bot() {
     if [ $confirmTGBot == "n" ]; then
         show_menu
     else
-        read -p "please input your tg bot token here:" TG_BOT_TOKEN
-        yellow "你设置的电报机器人Token:$TG_BOT_TOKEN"
-        read -p "please input your tg chat id here:" TG_BOT_CHATID
-        yellow "你设置的电报机器人ChatId:$TG_BOT_CHATID"
-        read -p "please input your tg bot runtime here:" TG_BOT_RUNTIME
-        yellow "你设置的电报机器人运行周期:$TG_BOT_RUNTIME"
+        read -p "请输入Telegram Bot Token:" TG_BOT_TOKEN
+        yellow "你设置的Telegram Bot Token:$TG_BOT_TOKEN"
+        read -p "请输入Telegram Bot Chat Id:" TG_BOT_CHATID
+        yellow "你设置的Telegram Bot Chat Id:$TG_BOT_CHATID"
+        read -p "请输入Telegram Bot运行周期:" TG_BOT_RUNTIME
+        yellow "你设置的Telegram Bot运行周期:$TG_BOT_RUNTIME"
         info=$(/usr/local/x-ui/x-ui setting -tgbottoken ${TG_BOT_TOKEN} -tgbotchatid ${TG_BOT_CHATID} -tgbotRuntime "$TG_BOT_RUNTIME")
         if [ $? != 0 ]; then
             yellow "$info"
-            red "设置TelegramBot失败"
+            red "设置Telegram Bot失败"
             exit 1
         else
-            green "设置TelegramBot成功"
+            green "设置Telegram Bot成功"
             show_menu
         fi
     fi
@@ -439,7 +439,7 @@ enable_telegram_bot() {
 }
 
 disable_telegram_bot() {
-    read -P "确认是否关闭Tgbot[y/n]" confirmTGBot
+    read -P "确认是否关闭Telegram Bot[y/n]" confirmTGBot
     if [ $confirmTGBot == "y" ]; then
         info=$(/usr/local/x-ui/x-ui setting -enabletgbot=false)
         if [ $? == 0 ]; then
