@@ -160,6 +160,7 @@ install_x-ui() {
     systemctl daemon-reload
     systemctl enable x-ui
     systemctl start x-ui
+    rm -f install.sh
     green "x-ui v${last_version} 安装完成，面板已启动"
     echo -e ""
     echo -e "x-ui 管理脚本使用方法: "
@@ -181,4 +182,3 @@ install_x-ui() {
 
 checkCentOS8
 install_x-ui $1
-rm -f install.sh
