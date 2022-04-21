@@ -517,9 +517,9 @@ show_menu() {
  ${GREEN}14.${PLAIN} 一键安装 bbr (最新内核)
  ${GREEN}15.${PLAIN} 一键申请SSL证书(acme申请)
  ${GREEN}16.${PLAIN} VPS防火墙放开所有网络端口
- ${green}17.${plain} 开启Telegram通知(TgBot)
- ${green}18.${plain} 关闭Telegram通知(TgBot)
- ${green}19.${plain} 设置TelegramBot
+ ${GREEN}17.${plain} 开启Telegram通知(TgBot)
+ ${GREEN}18.${plain} 关闭Telegram通知(TgBot)
+ ${GREEN}19.${plain} 设置TelegramBot
  "
     show_status
     echo && read -p "请输入选择 [0-19]: " num
