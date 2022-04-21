@@ -12,10 +12,10 @@
 - 可自定义 xray 配置模板
 - 支持 https 访问面板（自备域名 + ssl 证书）
 - 支持 amd64、arm64、s390x 架构的VPS
-- 支持 Telegram Bot 提醒流量使用情况
+- 支持 Telegram Bot 提醒登录信息、流量使用情况
 - 更多高级配置项，详见面板
 
-# 安装或升级
+# 安装或升级命令
 
 ```shell
 wget -N --no-check-certificate https://raw.githubusercontents.com/Misaka-blog/x-ui/master/install.sh && bash install.sh
