@@ -394,7 +394,7 @@ set_telegram_bot() {
     echo -E ""
     yellow "设置Telegram Bot需要知晓Bot的Token与ChatId"
     yellow "使用方法请参考博客https://coderfan.net"
-    read -P "我已确认以上内容[y/n]" confirmTGBot
+    read -p "我已确认以上内容[y/n]" confirmTGBot
     if [[ $confirmTGBot == "n" ]]; then
         show_menu
     else
