@@ -117,6 +117,7 @@ checkCentOS8(){
 
 install_x-ui() {
     systemctl stop x-ui
+    rm -f install.sh
     cd /usr/local/
     if [ $# == 0 ]; then
         last_version=$(curl -Ls "https://api.github.com/repos/Misaka-blog/x-ui/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
@@ -150,7 +151,6 @@ install_x-ui() {
 
     tar zxvf x-ui-linux-${arch}.tar.gz
     rm x-ui-linux-${arch}.tar.gz -f
-    rm -f install.sh
     cd x-ui
     chmod +x x-ui bin/xray-linux-${arch}
     cp -f x-ui.service /etc/systemd/system/
