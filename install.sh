@@ -177,8 +177,8 @@ install_x-ui() {
     echo -e "x-ui install      - 安装 x-ui 面板"
     echo -e "x-ui uninstall    - 卸载 x-ui 面板"
     echo -e "----------------------------------------------"
-    rm -f install.sh
 }
 
 checkCentOS8
 install_x-ui $1
+rm -f install.sh
