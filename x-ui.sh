@@ -420,9 +420,9 @@ enable_telegram_bot() {
     echo -E ""
     yellow "该功能会开启Telegram Bot通知"
     yellow "通知内容包括:"
-    yellow "1.流量使用情况"
-    yellow "2.节点到期提醒,待实现(规划中)"
-    yellow "3.面板登录提醒,待完善(规划中)"
+    green "1.流量使用情况"
+    green "2.节点到期提醒,待实现(规划中)"
+    green "3.面板登录提醒,待完善(规划中)"
     read -p "我已确认以上内容[y/n]" confirmTGBot
     if [ $confirmTGBot == "y" ]; then
         info=$(/usr/local/x-ui/x-ui setting -enabletgbot=true)
@@ -455,19 +455,7 @@ disable_telegram_bot() {
 }
 
 ssl_cert_issue() {
-    echo -E ""
-    yellow "******使用说明******"
-    yellow "该脚本将使用Acme脚本申请证书,使用时需保证:"
-    yellow "1.准备一个 Cloudflare 注册邮箱"
-    yellow "2.准备一个 Cloudflare Global API Key"
-    yellow "3.域名已通过 Cloudflare 进行解析到当前服务器"
-    yellow "4.该脚本申请证书默认安装路径为 /root 目录"
-    confirm "我已确认以上内容[y/n]" "y"
-    if [ $? -eq 0 ]; then
-        wget -N https://raw.githubusercontents.com/Misaka-blog/acme-1key/master/acme1key.sh && bash acme1key.sh
-    else
-        show_menu
-    fi
+    wget -N https://raw.githubusercontents.com/Misaka-blog/acme-1key/master/acme1key.sh && bash acme1key.sh
 }
 
 open_ports(){
