@@ -395,7 +395,7 @@ set_telegram_bot() {
     yellow "设置Telegram Bot需要知晓Bot的Token与ChatId"
     yellow "使用方法请参考博客https://coderfan.net"
     read -P "我已确认以上内容[y/n]" confirmTGBot
-    if [ $confirmTGBot == "n" ]; then
+    if [[ $confirmTGBot == "n" ]]; then
         show_menu
     else
         read -p "请输入Telegram Bot Token:" TG_BOT_TOKEN
@@ -424,7 +424,7 @@ enable_telegram_bot() {
     green "2.节点到期提醒,待实现(规划中)"
     green "3.面板登录提醒,待完善(规划中)"
     read -p "我已确认以上内容[y/n]" confirmTGBot
-    if [ $confirmTGBot == "y" ]; then
+    if [[ $confirmTGBot == "y" ]]; then
         info=$(/usr/local/x-ui/x-ui setting -enabletgbot=true)
         if [ $? == 0 ]; then
             green "开启成功,重启X-UI生效,重启中...."
@@ -439,8 +439,8 @@ enable_telegram_bot() {
 }
 
 disable_telegram_bot() {
-    read -P "确认是否关闭Telegram Bot[y/n]" confirmTGBot
-    if [ $confirmTGBot == "y" ]; then
+    read -p "确认是否关闭Telegram Bot[y/n]" confirmTGBot
+    if [[ $confirmTGBot == "y" ]]; then
         info=$(/usr/local/x-ui/x-ui setting -enabletgbot=false)
         if [ $? == 0 ]; then
             green "关闭成功,重启X-UI生效,重启中...."
