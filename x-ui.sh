@@ -125,10 +125,7 @@ uninstall() {
     systemctl reset-failed
     rm /etc/x-ui/ -rf
     rm /usr/local/x-ui/ -rf
-
-    echo ""
     echo -e "卸载X-ui面板成功"
-    echo ""
     rm /usr/bin/x-ui -f
 
     if [[ $# == 0 ]]; then
