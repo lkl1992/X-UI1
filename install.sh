@@ -47,8 +47,6 @@ else
     exit 1
 fi
 
-echo "CPU架构: ${arch}"
-
 if [ $(getconf WORD_BIT) != '32' ] && [ $(getconf LONG_BIT) != '64' ]; then
     echo "X-ui面板不支持 32 位系统(x86)，请使用 64 位系统(x86_64)，如果检测有误，请联系作者"
     rm -f install.sh
@@ -183,5 +181,4 @@ install_x-ui() {
 }
 
 checkCentOS8
-yellow "开始安装X-ui面板"
 install_x-ui $1
