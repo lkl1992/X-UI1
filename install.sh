@@ -80,16 +80,14 @@ config_after_install() {
         read -p "请设置您的账户密码:" config_password
         read -p "请设置面板访问端口:" config_port
         yellow "请核对面板登录信息是否正确："
-        yellow "您的账户名将设定为:${config_account}"
-        yellow "您的账户密码将设定为:${config_password}"
-        yellow "您的面板访问端口将设定为:${config_port}"
+        green "您的账户名将设定为:${config_account}"
+        green "您的账户密码将设定为:${config_password}"
+        green "您的面板访问端口将设定为:${config_port}"
         read -p "确认设定完成？[y/n]": config_confirm
         if [[ x"${config_confirm}" == x"y" || x"${config_confirm}" == x"Y" ]]; then
-            yellow "确认设定,设定中"
+            yellow "确认设定，正在设定中"
             /usr/local/x-ui/x-ui setting -username ${config_account} -password ${config_password}
-            green "账户密码设定完成"
             /usr/local/x-ui/x-ui setting -port ${config_port}
-            green "面板端口设定完成"
         else
             red "已取消,所有设置项均为默认设置,请及时修改"
         fi
