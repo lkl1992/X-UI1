@@ -452,7 +452,7 @@ show_menu() {
  ${GREEN}16.${PLAIN} VPS防火墙放开所有网络端口
  "
     show_status
-    echo && read -p "请输入选择 [0-19]: " num
+    echo && read -p "请输入选择 [0-16]: " num
 
     case "${num}" in
         0) exit 0 ;;
@@ -472,7 +472,7 @@ show_menu() {
         14) install_bbr ;;
         15) ssl_cert_issue ;;
         16) open_ports ;;
-        *) red "请输入正确的数字 [0-15]" ;;
+        *) red "请输入正确的数字 [0-16]" ;;
     esac
 }
 
