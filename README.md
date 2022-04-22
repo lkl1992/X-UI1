@@ -39,3 +39,4 @@ x-ui v2-ui
 # 感谢列表
 
 X-ui 原作：https://github.com/vaxilu/x-ui
+FranzKafkaYu 魔改版：https://github.com/FranzKafkaYu/x-ui
