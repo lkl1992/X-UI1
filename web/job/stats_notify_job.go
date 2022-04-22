@@ -4,11 +4,19 @@ import (
 	"fmt"
 	"net"
 	"os"
+	"time"
 	"x-ui/logger"
 	"x-ui/util/common"
 	"x-ui/web/service"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
+)
+
+type LoginStatus byte
+
+const (
+	LoginSuccess LoginStatus = 1
+	LoginFail    LoginStatus = 0
 )
 
 type StatsNotifyJob struct {
@@ -106,7 +114,7 @@ func (j *StatsNotifyJob) Run() {
 	j.SendMsgToTgbot(info)
 }
 
-func (j *StatsNotifyJob) UserLoginNotify(username string, ip string, time string) {
+func (j *StatsNotifyJob) UserLoginNotify(username string, ip string, time string, status LoginStatus) {
 	if username == "" || ip == "" || time == "" {
 		logger.Warning("UserLoginNotify failed,invalid info")
 		return
@@ -118,7 +126,11 @@ func (j *StatsNotifyJob) UserLoginNotify(username string, ip string, time string
 		fmt.Println("get hostname error:", err)
 		return
 	}
-	msg = fmt.Sprintf("面板登录提醒\r\n主机名称:%s\r\n", name)
+	if status == LoginSuccess {
+		msg = fmt.Sprintf("面板登录成功提醒\r\n主机名称:%s\r\n", name)
+	} else if status == LoginFail {
+		msg = fmt.Sprintf("面板登录失败提醒\r\n主机名称:%s\r\n", name)
+	}
 	msg += fmt.Sprintf("时间:%s\r\n", time)
 	msg += fmt.Sprintf("用户:%s\r\n", username)
 	msg += fmt.Sprintf("IP:%s\r\n", ip)
