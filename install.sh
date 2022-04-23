@@ -113,9 +113,7 @@ config_after_install() {
 }
 
 install_x-ui() {
-    rm -f install.sh
     systemctl stop x-ui
-    cd /usr/local/
     if [ $# == 0 ]; then
         last_version=$(curl -Ls "https://api.github.com/repos/Misaka-blog/x-ui/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$last_version" ]]; then
@@ -126,7 +124,7 @@ install_x-ui() {
         yellow "检测到 x-ui 最新版本：${last_version}，开始安装"
         wget -N --no-check-certificate -O /usr/local/x-ui-linux-${arch}.tar.gz https://github.com/Misaka-blog/x-ui/releases/download/${last_version}/x-ui-linux-${arch}.tar.gz
         if [[ $? -ne 0 ]]; then
-            red "下载 x-ui 失败，请确保你的服务器能够下载 Github 的文件"
+            red "下载 x-ui 失败，请确保你的服务器能够连接并下载 Github 的文件"
             rm -f install.sh
             exit 1
         fi
@@ -141,11 +139,10 @@ install_x-ui() {
             exit 1
         fi
     fi
-
     if [[ -e /usr/local/x-ui/ ]]; then
         rm -rf /usr/local/x-ui/
     fi
-
+    cd /usr/local/
     tar zxvf x-ui-linux-${arch}.tar.gz
     rm x-ui-linux-${arch}.tar.gz -f
     cd x-ui
@@ -158,6 +155,8 @@ install_x-ui() {
     systemctl daemon-reload
     systemctl enable x-ui
     systemctl start x-ui
+    cd /root
+    rm -f install.sh
     green "x-ui v${last_version} 安装完成，面板已启动"
     echo -e ""
     echo -e "x-ui 管理脚本使用方法: "
