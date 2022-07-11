@@ -88,7 +88,7 @@ before_show_menu() {
 }
 
 install() {
-    bash <(curl -Ls https://raw.githubusercontents.com/Misaka-blog/x-ui/master/install.sh)
+    bash <(curl -Ls https://raw.githubusercontents.com/lkl1992/X-UI1/master/install.sh)
     if [[ $? == 0 ]]; then
         if [[ $# == 0 ]]; then
             start
@@ -106,14 +106,14 @@ update() {
             rm -rf /usr/local/x-ui/
         fi
         
-        last_version=$(curl -Ls "https://api.github.com/repos/Misaka-blog/x-ui/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+        last_version=$(curl -Ls "https://api.github.com/repos/lkl1992/X-UI1/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$last_version" ]]; then
             red "检测 x-ui 版本失败，可能是超出 Github API 限制，请稍后再试，或手动指定 x-ui 版本安装"
             rm -f install.sh
             exit 1
         fi
         yellow "检测到 x-ui 最新版本: ${last_version}，开始安装"
-        wget -N --no-check-certificate -O /usr/local/x-ui-linux-$(archAffix).tar.gz https://github.com/Misaka-blog/x-ui/releases/download/${last_version}/x-ui-linux-$(archAffix).tar.gz
+        wget -N --no-check-certificate -O /usr/local/x-ui-linux-$(archAffix).tar.gz https://github.com/lkl1992/X-UI1/releases/download/${last_version}/x-ui-linux-$(archAffix).tar.gz
         if [[ $? -ne 0 ]]; then
             red "下载 x-ui 失败, 请确保你的服务器能够连接并下载 Github 的文件"
             exit 1
@@ -127,7 +127,7 @@ update() {
         chmod +x x-ui bin/xray-linux-$(archAffix)
         cp -f x-ui.service /etc/systemd/system/
         
-        wget -N --no-check-certificate https://raw.githubusercontents.com/Misaka-blog/x-ui/main/x-ui.sh -O /usr/bin/x-ui
+        wget -N --no-check-certificate https://raw.githubusercontents.com/lkl1992/X-UI1/main/x-ui.sh -O /usr/bin/x-ui
         chmod +x /usr/local/x-ui/x-ui.sh
         chmod +x /usr/bin/x-ui
         
@@ -322,7 +322,7 @@ install_bbr() {
 }
 
 update_shell() {
-    wget -O /usr/bin/x-ui -N --no-check-certificate https://github.com/Misaka-blog/x-ui/raw/master/x-ui.sh
+    wget -O /usr/bin/x-ui -N --no-check-certificate https://github.com/lkl1992/X-UI1/raw/master/x-ui.sh
     if [[ $? != 0 ]]; then
         echo ""
         red "下载脚本失败，请检查本机能否连接 GitHub"
@@ -535,9 +535,9 @@ show_menu() {
         12) check_install && enable_xui ;;
         13) check_install && disable_xui ;;
         14) install_bbr ;;
-        15) wget -N https://raw.githubusercontents.com/Misaka-blog/acme-1key/master/acme1key.sh && bash acme1key.sh ;;
+        15) wget -N https://raw.githubusercontents.com/lkl1992/acme-1key/master/acme1key.sh && bash acme1key.sh ;;
         16) open_ports ;;
-        17) wget -N --no-check-certificate https://raw.githubusercontents.com/Misaka-blog/Misaka-WARP-Script/master/misakawarp.sh && bash misakawarp.sh ;;
+        17) wget -N --no-check-certificate https://raw.githubusercontents.com/lkl1992/Misaka-WARP-Script/master/misakawarp.sh && bash misakawarp.sh ;;
         *) red "请输入正确的数字 [0-17]" ;;
     esac
 }
