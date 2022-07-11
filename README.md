@@ -1,15 +1,12 @@
-# Misaka-blog x-ui 魔改优化版
+# x-ui 魔改优化版
 
 支持多协议多用户的 xray 面板
 
-博客说明：https://owo.misaka.rest/misakablog-xui/
-
-x-ui教程：https://owo.misaka.rest/x-ui/
 
 ## 安装命令
 
 ```shell
-wget -N --no-check-certificate https://raw.githubusercontents.com/Misaka-blog/x-ui/main/install.sh && bash install.sh
+wget -N --no-check-certificate https://raw.githubusercontents.com/lkl1992/X-UI1/main/install.sh && bash install.sh
 ```
 
 快捷方式：`x-ui`
@@ -60,7 +57,7 @@ wget -N --no-check-certificate https://raw.githubusercontents.com/Misaka-blog/x-
 * TG机器人ChatId
 * 机器人周期运行时间，采用crontab语法，语法说明如下
 
-![](https://gcore.jsdelivr.net/gh/Misaka-blog/tuchuang@master/20220420235233.png)
+
 
 > Crontab表达式生成器：https://cron.qqe2.com/
 
